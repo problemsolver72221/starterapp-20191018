@@ -24,63 +24,24 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { Switch, Route } from 'react-router-dom'
-import { injectIntl, intlShape, defineMessages } from 'react-intl'
 
-import { HomePage, PagesList, PageItem } from 'features/pages'
-import { LocaleSelector } from 'features/locale'
-import logo from './logo.svg'
-import './App.css'
-
-const messages = defineMessages({
-    subtitle: {
-        id: 'app.subtitle',
-        defaultMessage: 'Go to `react-ssr` documentation',
-    },
-    description: {
-        id: 'app.description',
-        defaultMessage: 'Edit <code>src/App.js</code> and save to reload.',
-    },
-})
-
-const mapState = ({ app, locale }) => ({
+const mapState = ({ app }) => ({
     name: app.name,
-    locale: locale.locale.split('_')[0],
 })
 
-const App = ({ name, locale, intl }) => (
+const App = ({ name }) => (
     <>
         <Helmet>
-            <html lang={locale} />
             <title>{name}</title>
         </Helmet>
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p dangerouslySetInnerHTML={{ __html: intl.formatMessage(messages.description) }} />
-                <a
-                    className="App-link"
-                    href="https://github.com/marcopeg/forrest-starter-universal"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={intl.formatMessage(messages.subtitle)}
-                >
-                    {name}
-                </a>
-            </header>
-            <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route exact path="/:locale" component={PagesList} />
-                <Route exact path="/:locale/:slug" component={PageItem} />
-            </Switch>
-        </div>
-        <LocaleSelector />
+        <Switch>
+            <Route exact path="/" component={() => 'home'} />
+        </Switch>
     </>
 )
 
 App.propTypes = {
     name: PropTypes.string.isRequired,
-    locale: PropTypes.string.isRequired,
-    intl: intlShape.isRequired,
 }
 
-export default injectIntl(connect(mapState)(App))
+export default connect(mapState)(App)

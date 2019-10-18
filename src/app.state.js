@@ -8,9 +8,6 @@ const reducers = {
 const features = [
     require('@forrestjs/feature-storage/client'),
     require('@forrestjs/feature-network/client'),
-    require('@forrestjs/feature-locale/client'),
-    require('features/locale'),
-    require('features/pages'),
 ]
 
 export const createState = createSSRState(reducers, features)

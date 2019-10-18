@@ -9,28 +9,28 @@ module.exports = {
             name: 'Components',
             description: 'Application level dumb components',
             components: [
-                'src/components/Markdown/Markdown.js',
+                // 'src/components/Markdown/Markdown.js',
             ],
         },
         {
             name: 'Features',
             description: 'Produce examples for each feature',
             sections: [
-                {
-                    name: 'features/locale',
-                    components: [
-                        'src/features/locale/LocaleSelectorUI.js',
-                    ],
-                },
-                {
-                    name: 'features/pages',
-                    components: [
-                        'src/features/pages/components/HomePageUI.js',
-                        'src/features/pages/components/PagesListUI.js',
-                        'src/features/pages/components/PageItemUI.js',
-                        'src/features/pages/components/PageContent.js',
-                    ],
-                },
+                // {
+                //     name: 'features/locale',
+                //     components: [
+                //         'src/features/locale/LocaleSelectorUI.js',
+                //     ],
+                // },
+                // {
+                //     name: 'features/pages',
+                //     components: [
+                //         'src/features/pages/components/HomePageUI.js',
+                //         'src/features/pages/components/PagesListUI.js',
+                //         'src/features/pages/components/PageItemUI.js',
+                //         'src/features/pages/components/PageContent.js',
+                //     ],
+                // },
             ],
         },
     ],

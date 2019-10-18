@@ -8,17 +8,17 @@
  * handle SSR routing with location/context provided by `react-ssr`.
  */
 
+/* eslint-disable */
+
 import React from 'react'
 import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router-dom'
 import { createSSRRender } from '@forrestjs/core/lib/create-ssr-render'
-import { LocaleProvider } from '@forrestjs/feature-locale/client'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
 // project specific modules
 import App from './App'
 import { createState } from './app.state'
-import './locale'
 
 // eslint-disable-next-line
 const Root = ({ store, location, context, ...props }) => {
@@ -28,9 +28,7 @@ const Root = ({ store, location, context, ...props }) => {
         <StyleSheetManager sheet={context.styledComponents.instance}>
             <StaticRouter location={location} context={context}>
                 <Provider store={store}>
-                    <LocaleProvider>
-                        <App {...props} />
-                    </LocaleProvider>
+                    <App {...props} />
                 </Provider>
             </StaticRouter>
         </StyleSheetManager>

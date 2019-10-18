@@ -10,13 +10,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router } from 'react-router-dom'
-import { LocaleProvider } from '@forrestjs/feature-locale/client'
 
 // project specific modules
 import * as serviceWorker from './serviceWorker'
 import App from './App'
 import { createState } from './app.state'
-import './locale'
 import './index.css'
 
 /**
@@ -35,9 +33,7 @@ const history = require('history').createBrowserHistory()
 const Root = ({ store, history, ...props }) => (
     <Router history={history}>
         <Provider store={store}>
-            <LocaleProvider>
-                <App {...props} />
-            </LocaleProvider>
+            <App {...props} />
         </Provider>
     </Router>
 )

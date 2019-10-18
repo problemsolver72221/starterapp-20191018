@@ -12,22 +12,19 @@ import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import { IntlProvider } from 'react-intl'
 
 const logger = store => next => action => {
     console.log('dispatching', action)
 }
 
-const ContextProvider = ({ reducers, history, locale, style, ...props }) => {
+const ContextProvider = ({ reducers, history, style, ...props }) => {
     const combinedReducers = combineReducers(reducers)
     const store = createStore(combinedReducers, applyMiddleware(logger))
 
     return (
         <Router history={history}>
             <Provider store={store}>
-                <IntlProvider locale={locale}>
-                    <div {...props} style={style} />
-                </IntlProvider>
+                <div {...props} style={style} />
             </Provider>
         </Router>
     )
@@ -36,16 +33,12 @@ const ContextProvider = ({ reducers, history, locale, style, ...props }) => {
 ContextProvider.propTypes = {
     reducers: PropTypes.object,
     history: PropTypes.object,
-    locale: PropTypes.string,
     style: PropTypes.object,
 }
 
 ContextProvider.defaultProps = {
-    reducers: {
-        locale: () => ({ locale: 'en' }),
-    },
+    reducers: {},
     history: createMemoryHistory(),
-    locale: 'en',
     style: {
         position: 'relative',
     },

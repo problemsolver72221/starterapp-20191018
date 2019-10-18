@@ -88,7 +88,6 @@ dev:
 		-v $(shell pwd)/public:/usr/src/app/public:delegated \
 		-v $(shell pwd)/index.js:/usr/src/app/index.js:delegated \
 		-v $(shell pwd)/.env:/usr/src/app/.env:delegated \
-		-v $(shell pwd)/pages:/usr/src/app/pages:delegated \
 		-p ${api}:8080 \
 		-p ${app}:3000 \
 		-w /usr/src/app \
