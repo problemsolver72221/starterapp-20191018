@@ -1,8 +1,15 @@
-version: '2.1'
+version: '3.4'
 services:
-    app:
-        build: .
+
+    postgres:
+        image: fetchq/fetchq:10.4-1.3.0
         ports:
-            - 8080:8080
+            - 5432:5432
         environment:
-            NODE_ENV: production
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: postgres
+        volumes:
+            - ${HUMBLE_DATA}/pg:/var/lib/postgresql/data
+            - ${HUMBLE_BACKUP}/pg:/backup
+        restart: always
