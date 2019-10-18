@@ -16,14 +16,38 @@ export default createHookApp({
         require('@forrestjs/service-express-graphql-test'),
         require('@forrestjs/service-express-session'),
         require('@forrestjs/service-express-ssr'),
+        require('@forrestjs/service-express-device'),
         require('@forrestjs/service-postgres'),
+        require('./services/service-express-graphql-workers'),
+        require('./services/service-fetchq'),
+        require('./services/service-socketio'),
+        require('./services/service-segment'),
     ],
-    features: [],
+    features: [
+        require('./features/feature-fetchq-workflow'),
+    ],
     settings: async ({ setConfig, getEnv }) => {
         // setConfig('express.session', {
         //     duration: '30m',
         //     autoExtend: false,
         // })
+
+        setConfig('segment', {
+            key: getEnv('SEGMENT_WRITE_KEY'),
+        })
+
+        setConfig('express.workers.token', getEnv('EXPRESS_WORKERS_TOKEN'))
+
+        setConfig('fetchq', {
+            logLevel: getEnv('FETCHQ_LOG_LEVEL'),
+            connect: {
+                host: getEnv('PG_HOST'),
+                port: getEnv('PG_PORT'),
+                database: getEnv('PG_DATABASE'),
+                user: getEnv('PG_USERNAME'),
+                password: getEnv('PG_PASSWORD'),
+            },
+        })
 
         setConfig('jwt', {
             secret: getEnv('JWT_SECRET'),

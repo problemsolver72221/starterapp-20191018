@@ -1,0 +1,1 @@
+## should contain graphql endpoints for fetchq workers service to access
