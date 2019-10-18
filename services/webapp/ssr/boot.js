@@ -19,7 +19,7 @@ export default createHookApp({
         require('@forrestjs/service-postgres'),
     ],
     features: [],
-    settings: async ({ setConfig }) => {
+    settings: async ({ setConfig, getEnv }) => {
         // setConfig('express.session', {
         //     duration: '30m',
         //     autoExtend: false,
