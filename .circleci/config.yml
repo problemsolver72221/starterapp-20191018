@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:10.15
-    working_directory: ./services/webapp
+    working_directory: ~/services/webapp
     steps:
       - checkout
       - run: npm install
