@@ -61,6 +61,7 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "@forrestjs/package-universal-dev": "3.7.0"
+    "@forrestjs/package-universal-dev": "3.7.0",
+    "eslint": "^6.6.0"
   }
 }
