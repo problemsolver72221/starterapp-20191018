@@ -1,23 +1,46 @@
 version: 2
 jobs:
-  build:
-    docker:
-      - image: circleci/node:10.15
-    working_directory: ../services/webapp
-    steps:
-      - checkout
-      # Download and cache dependencies
-      # - restore_cache:
-      #     keys:
-      #       - v1-dependencies-{{ checksum "package.json" }}
-      #       # fallback to using the latest cache if no exact match is found
-      #       - v1-dependencies-
-      # # Save dependencies to cache
-      # - save_cache:
-      #     paths:
-      #       - node_modules
-      #     key: v1-dependencies-{{ checksum "package.json" }}
-      - run: yarn install
-      # - run: yarn lint
-      - run: yarn test
-      - run: yarn build
+    build:
+        docker:
+            - image: circleci/node:10.15
+        branches:
+            only:
+              - master
+              - spike/circleci
+        working_directory: ~/webapp
+        steps:
+            - checkout
+            # # Download and cache dependencies
+            # - restore_cache:
+            #     keys:
+            #       - v1-dependencies-{{ checksum "package.json" }}
+            #       # fallback to using the latest cache if no exact match is found
+            #       - v1-dependencies-
+
+              # install dependencies
+            - run:
+                name: Install Node Packages
+                command: yarn install
+                path: services/webapp
+
+            # # Save dependencies to cache
+            # - save_cache:
+            #     paths:
+            #       - services/webapp/node_modules
+            #     key: v1-dependencies-{{ checksum "package.json" }}
+
+            # - run:
+            #     name: Check eslint
+            #     command: yarn lint
+            #     path: services/webapp
+
+            - run:
+                name: Run test
+                command: yarn test --passWithNoTests
+                path: services/webapp
+
+            - run:
+                name: Run build
+                command: yarn build
+                path: services/webapp
+
